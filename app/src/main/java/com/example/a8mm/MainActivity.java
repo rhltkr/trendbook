@@ -11,7 +11,9 @@ import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.a8mm.Adapters.PlateAdapter;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private List<PlateModel> plateModelList;
     private PlateAdapter plateAdapter;
     private LinearLayout phoneContinue;
-
+    private Button skipbutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         phoneContinue = (LinearLayout) findViewById(R.id.linear1);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        skipbutton = (Button)findViewById(R.id.buttonskip);
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -77,6 +82,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ////////continue with phone end//////////
+        skipbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                 startActivity(intent);
+                 finish();
+                Animatoo.animateSlideLeft(MainActivity.this);
+            }
+        });
 
 
     }
@@ -99,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
         };
         handler.postDelayed(runnable,speedScroll);
     }
-    public void goToHomePage(View view) {
-        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
-        Animatoo.animateWindmill(this);
-    }
+//    public void goToHomePage(View view) {
+//
+//    }
+
+
+
 }
